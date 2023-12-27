@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Sheets\Sheet;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('posts.index');
+    $posts = Sheets::collection('posts')->all();
+    return view('posts.index', [
+        'posts' => $posts
+    ]);
 });
 
 Route::get('/posts/{post}', function ($post) {
