@@ -9,8 +9,9 @@
 </head>
 <body>
 
-<h1>Post {{ $post }}</h1>
-
+<h1>Post {{ $post->title }}</h1>
+<div>Posted {{ $post->date->diffForHumans() }} by {{ $post->author }}</div>
+<div>{{ $post->contents }}</div>
 
 </body>
 </html>
