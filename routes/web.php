@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Sheets\Sheet;
@@ -15,13 +16,16 @@ use Spatie\Sheets\Sheet;
 |
 */
 
-Route::get('/', function () {
-    $posts = Sheets::collection('posts')->all();
+Route::get('/', [PagesController::class, 'index']);
 
-    return view('posts.index', [
-        'posts' => $posts
-    ]);
-});
+
+//Route::get('/', function () {
+//    $posts = Sheets::collection('posts')->all();
+//
+//    return view('posts.index', [
+//        'posts' => $posts
+//    ]);
+//});
 
 Route::get('/posts/{slug}', function ($slug) {
     $post = Sheets::collection('posts')->all()->where('slug', $slug)->first();
